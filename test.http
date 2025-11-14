@@ -1,0 +1,18 @@
+POST localhost:9999/auth/signup
+Content-Type: application/json
+
+{
+  "display_name": "madox",
+  "phone_number": "+79094802616",
+  "password": "12345678"
+}
+
+###
+POST localhost:9999/auth/signin
+Content-Type: application/json
+
+{
+"phone_number": "+79094802616",
+"password": "12345678"
+}
+
