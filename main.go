@@ -40,7 +40,7 @@ func NewContainer() (*Container, error) {
 		[]byte(accessSecret),
 		[]byte(refreshSecret),
 		15*time.Minute,
-		7*24*time.Hour,
+		30*24*time.Hour,
 	)
 
 	userRepo := user.NewRepository(db)
@@ -82,7 +82,8 @@ func (c *Container) SetupRouter() *gin.Engine {
 	{
 		auth.POST("/signup", c.UserHandler.SignUp)
 		auth.POST("/signin", c.UserHandler.SignIn)
-		// refresh logout
+		auth.POST("/refresh", c.UserHandler.Refresh)
+		auth.POST("/logout", c.UserHandler.Logout)
 	}
 
 	// api := router.Group("/api")

@@ -46,3 +46,34 @@ func (h *Handler) SignIn(c *gin.Context) {
 
 	c.JSON(http.StatusOK, response)
 }
+
+func (h *Handler) Refresh(c *gin.Context) {
+	var req RefreshRequest
+	if err := c.BindJSON(&req); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "bad request"})
+		return
+	}
+
+	response, err := h.userService.Refresh(c.Request.Context(), req)
+	if err != nil {
+		log.Printf("h.userService.Refresh: %v", err)
+		c.JSON(http.StatusBadRequest, gin.H{"error": "bad request"})
+	}
+
+	c.JSON(http.StatusOK, response)
+}
+
+func (h *Handler) Logout(c *gin.Context) {
+	var req LogoutRequest
+	if err := c.BindJSON(&req); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "bad request"})
+		return
+	}
+
+	if err := h.userService.Logout(c.Request.Context(), req); err != nil {
+		log.Printf("h.userService.Logout: %v", err)
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "logout failed"})
+	}
+
+	c.JSON(http.StatusOK, "successfully logged out")
+}

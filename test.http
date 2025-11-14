@@ -16,3 +16,19 @@ Content-Type: application/json
 "password": "12345678"
 }
 
+###
+POST localhost:9999/auth/refresh
+Content-Type: application/json
+
+{
+  "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjMxNjI1NzMsImlhdCI6MTc2MzE2MTY3MywidXNlcl9pZCI6IjA2ODNlNTZmLTNhMDYtNDk4ZC04Yzg1LTMyNzhhYmMxZmQ3ZCJ9.vxAVmgUWLp1ujG7j6Q2uEoUIDFUyZ4sJDxnhdj4lXgw"
+}
+
+###
+POST localhost:9999/auth/logout
+Content-Type: application/json
+
+{
+  "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjMxNjI1NzMsImlhdCI6MTc2MzE2MTY3MywidXNlcl9pZCI6IjA2ODNlNTZmLTNhMDYtNDk4ZC04Yzg1LTMyNzhhYmMxZmQ3ZCJ9.3SmmCmUqXWv72bxI4BJBq-8mmJ7DrIPCbBMVNfVUahU"
+}
+
